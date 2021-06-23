@@ -1,0 +1,59 @@
+import java.util.Scanner; 
+public class LinkedListDoubly 
+{ 
+    Node head; 
+    Node last;
+    static class Node 
+    { 
+        int data; 
+        Node next,prev; 
+        Node(int d) 
+        { 
+            data = d; 
+            next = null;
+            prev=null;
+        } 
+    } 
+    public static LinkedListDoubly insert(LinkedListDoubly list, int data) 
+    { 
+        Node new_node = new Node(data);
+        if (list.head == null) { 
+            list.head = new_node;
+            list.last = new_node;
+        } 
+        else 
+        {  
+            list.last.next = new_node;
+            new_node.prev =  list.last;
+            list.last=new_node;
+        } 
+        return list; 
+    }  
+    public static void printList(LinkedListDoubly list) 
+    { 
+        Node currNode = list.head;  
+        while (currNode != null) { 
+            System.out.print(currNode.data + " "); 
+            currNode = currNode.next; 
+        } 
+    }
+    public static void main(String[] args) 
+    { 
+        LinkedListDoubly list = new LinkedListDoubly();
+		Scanner sc = new Scanner(System.in);
+		int i=sc.nextInt();
+		while(true)
+		{ 
+			if(i!=0)
+			{
+				list=insert(list,i);
+				printList(list);
+			}
+			else
+			{
+				return;
+			}
+			i=sc.nextInt();
+		}
+    } 
+} 

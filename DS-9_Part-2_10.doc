@@ -1,0 +1,86 @@
+import java.util.Scanner;
+public class Tree
+{
+	public static void main(String[] args)
+	{
+		BSTree x = new BSTree();
+		int d=1;
+		Scanner s = new Scanner(System.in);
+		while (true)
+		{
+		d=s.nextInt();
+		if (d==0)
+			break;
+		x.root=x.insert(x.root, d);
+		}
+		System.out.println("Inorder Traversal");
+		x.inorder(x.root);
+		System.out.println("\nPreorder Traversal");
+		x.preorder(x.root);
+		System.out.println("\nPostorder Traversal");
+		x.postorder(x.root);
+	
+	}
+}
+
+class Node
+{
+	int data;
+	 Node right;
+	Node left;
+	public Node(int t)
+	{
+		this.data=t;
+		this.right=null;
+		this.left=null;
+	}
+}
+
+class BSTree
+{
+	 Node root; 
+	public  Node insert (Node root,int d)
+	{
+		if (root==null)
+			root = new Node(d);
+		else if (root.data<d)
+			root.left=insert(root.left,d);
+		else
+			root.right=insert(root.right,d);
+		return root;
+	}
+	public  void inorder(Node root)
+	{
+		if (root == null)  
+	        return;  
+	    else {  
+	        inorder(root.left);  
+	        System.out.print( root.data +" ");  
+	        inorder(root.right);  
+	    }
+		
+	}
+	public  void preorder(Node root)
+	{
+		if (root == null)  
+	        return;  
+	    else {  
+	    	System.out.print( root.data +" ");
+	    	preorder(root.left);  
+	        preorder(root.right);  
+	    }
+		
+	}
+	public  void postorder(Node root)
+	{
+		if (root == null)  
+	        return;  
+	    else {  
+	        postorder(root.left);  
+	        postorder(root.right);
+	        System.out.print( root.data +" ");
+	    }
+		
+	}
+
+}
